@@ -64,7 +64,8 @@ class QuizController extends Controller
     public function startQuiz($id)
     {
         $quiz = Quiz::find($id);
-        $questions = Questions::where('quiz_id', $id)->get();
+        $questions = Questions::where('quiz_id', $id)->where('status', "1")->get();
+
         return view('quiz-start', compact('questions', 'quiz'));
     }
     public function submitQuiz(Request $request)

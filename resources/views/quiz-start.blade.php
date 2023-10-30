@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    @if(!empty($questions) && count($questions) != 0)
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-semibold mb-4">{{$quiz->quiz_title}}</h1>
         <form method="POST" action="{{route('submit-quiz')}}">
@@ -35,7 +35,14 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Submit</button>
         </form>
     </div>
-
+    @else
+    <div class="min-h-screen">
+        <div class="flex items-center justify-end">
+            <a href="{{ route('user-home') }}" class="text-lg font-semibold bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 ml-4">Back to Home</a>
+        </div>
+        <h1 class="flex justify-center align-middle font-mono text-6xl">NO Quiz Found Try Again Later</h1>
+        @endif
+    </div>
 </body>
 
 </html>

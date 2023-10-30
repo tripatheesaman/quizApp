@@ -26,6 +26,7 @@ class QuizClass implements QuizInterface
     }
     public function createQuiz()
     {
+        dd($this->request->request);
         $this->quiz->quiz_title = $this->request->input('title');
         $this->quiz->status = 1;
         $this->quiz->save();
@@ -36,12 +37,13 @@ class QuizClass implements QuizInterface
             $this->question->question_title = $questionData['question'];
             $this->question->options = json_encode($questionData['options']);
             $this->question->correct_answer = $questionData['correct_answer'];
-            $this->question->status = 1;
+            $this->question->status = "1";
             $this->question->save();
         }
     }
     public function updateQuiz($request, $quizId, $deletedIds)
     {
+
         if (!empty($deletedIds)) {
             Questions::whereIn('question_id', $deletedIds)->delete();
         }
@@ -69,7 +71,7 @@ class QuizClass implements QuizInterface
                 $question->question_title = $questionData['question'];
                 $question->options = json_encode($questionData['options']);
                 $question->correct_answer = $questionData['correct_answer'];
-                $question->status = 1;
+                $question->status = "1";
                 $question->save();
             }
         }
