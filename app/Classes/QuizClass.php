@@ -26,7 +26,7 @@ class QuizClass implements QuizInterface
     }
     public function createQuiz()
     {
-        dd($this->request->request);
+      
         $this->quiz->quiz_title = $this->request->input('title');
         $this->quiz->status = 1;
         $this->quiz->save();
